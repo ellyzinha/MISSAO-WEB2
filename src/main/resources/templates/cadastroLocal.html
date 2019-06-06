@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Locais</title>
+</head>
+<body>
+<h2 align="center">Cadastro do Local de Evento</h2>
+<div align="center">
+<form th:action="@{/addLocal}" th:object="${localEventos}" method="post">
+		<input type="hidden" th:field="*{codigo}"/>
+		<div>
+		<label>Nome do Local:</label><br>
+		<input type="text" th:field="*{nome}">
+		</div>
+		<div>
+		<label>Endereço:</label><br>
+		<input type="text" th:field="*{endereco}">
+		</div>
+		<div>
+		<label>Link do Google Maps:</label><br>
+		<input type="url" th:field="*{linkMapa}">
+		</div>
+		<div>
+		<label>Capacidade:</label><br>
+		<input type="number" th:field="*{capacidade}">
+		</div>
+		<br>
+		<label>Ambiente Fechado ou Aberto:</label><br>
+		<select th:field="*{ambiente}">
+			<option value="ambiente">Selecione</option>
+			<option value="ambiente">Aberto</option>
+			<option value="ambiente">Fechado</option>
+		</select>
+		<div>
+		<br>
+		<button type="submit">Enviar</button>
+		</div>
+		
+		<div th:if="${#fields.hasAnyErrors()}">
+	<p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
+</div>
+	
+	</form>
+	<br>
+	<a th:href="@{/listarLocal}">Voltar</a>
+	</div>
+
+</body>
+</html>

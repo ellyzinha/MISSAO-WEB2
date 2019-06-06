@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Local Eventos</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
+</head>
+<body>
+	<h2 align="center">Local</h2>
+	<div align="center">
+		<table border="1" class="table">
+			<tr>
+				<th scope="col">Nome do Local</th>
+				<th scope="col">Capacidade</th>
+				<th scope="col">Link Google Maps</th>
+				<th scope="col"></th>
+			</tr>
+			<tr th:each="local : ${lista}">
+				<td scope="row" th:text="${local.nome}"></td>
+				<td th:text="${local.capacidade}"></td>
+				<td th:text="${local.linkMapa}"></td>
+				<td>
+				<a class="waves-effect waves-light btn" th:href="@{/editarEvento(codigo=${local.codigo})}">Editar</a>
+				<a class="waves-effect waves-light btn" th:href="@{/removerEvento(codigo=${local.codigo})}">Remover</a>
+				</td>
+		
+		</table>
+	</div>
+	<div align="center">
+	<a th:href="@{/cadLocais}">Cadastrar Local</a>
+	<br>
+	<br>
+	<a th:href="@{/ind}">Página Inicial</a> <br>
+	</div>
+	
+
+</body>
+</html>

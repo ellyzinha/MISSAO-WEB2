@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar Evento</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="cadastro.css" />
+    <script>
+                $(document).ready(function(){
+
+            $('.input').focus(function(){
+            $(this).parent().find(".label-txt").addClass('label-active');
+            });
+
+            $(".input").focusout(function(){
+            if ($(this).val() == '') {
+                $(this).parent().find(".label-txt").removeClass('label-active');
+            };
+            });
+
+            });
+    </script>
+</head>
+<body>
+
+			<form th:action="@{/addEventos}" th:object="${eventos}" method="post">
+					<input type="hidden" th:field="*{codigo}"/>
+					<label>
+					<p class="label-txt">Nome do evento</p>
+					<input class="input" type="text" th:field="*{nome}"/>
+					<div class="line-box">
+					<div class="line">
+						
+					</div>
+					</div>
+					</label>
+					
+					<label>
+					<p class="label-txt"> Descrição do Evento</p>
+					<textarea class="input" rows="2" cols="15" th:field="*{descricaoEvento}">Descrição</textarea>
+					<div class="line-box">
+					<div  class="line"></div>
+					</div>
+					</label>
+					<label>
+					<p class="label-txt">Data do Evento:</p>
+					<input class="input" type="date" th:field="*{data}"/>
+					<div class="line-box">
+					<div  class="line">
+						
+					</div>
+					</div>
+					</label>
+					<label>
+					<p class="label-txt">Quantidade Máxima de Convidados:</p>
+					<input class="input" type="number" th:field="*{quantMaxConvidados}"/>
+					<div class="line-box">
+					<div  class="line">
+						
+					</div>
+					</div>
+					</label>
+					<label>
+					<p class="label-txt">Nome do Responsável: </p>
+					<input class="input" type="text" th:field="*{nomeResp}"/>
+					<div  class="line-box">
+					<div  class="line">
+						
+					</div>
+					</div>
+					</label>
+					<label>
+					<p class="label-txt">Telefone do Responsável: </p>
+					<input class="input" type="number" th:field="*{telResp}"/>
+					<div  class="line-box">
+					<div  class="line">
+						
+					</div>
+					</div>
+					</label>
+					<label> 
+					<p class="label-txt">Duração do Evento em Horas:</p> 
+					<input class="input" type="number" th:field="*{duracaoHoras}"/>
+					<div  class="line-box">
+					<div  class="line">
+						
+					</div>
+					</div>
+					</label>
+					<label for="localEventos">
+					<select  class="form-control"  th:field="*{localEventos}">
+						<option value="">Selecione um Local </option>
+						<option th:each="local : ${listaLocal}"
+								th:value="${local.codigo}"
+								th:text="${local.nome}"></option>
+					</select>
+					</label>
+						<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Salvar</button>
+					
+		<div class="alert alert-danger">			
+		<div th:if="${#fields.hasAnyErrors()}">
+			<p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
+		</div>
+		</div>	
+		</form>
+
+</div>
+</div>
+</div>
+		
+
+</body>
+</html>
