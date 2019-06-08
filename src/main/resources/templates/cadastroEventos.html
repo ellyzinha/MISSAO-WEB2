@@ -104,12 +104,11 @@
 		<div th:if="${#fields.hasAnyErrors()}">
 			<p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
 		</div>
-		</div>	
+		</div>
+		<a th:href="@{/listarEventos}">Voltar</a>
+			
 		</form>
 
-</div>
-</div>
-</div>
 		
 
 </body>

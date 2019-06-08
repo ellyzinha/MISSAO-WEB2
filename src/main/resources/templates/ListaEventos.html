@@ -51,6 +51,7 @@
 					<th scope="col">Nome do Responsável</th>
 					<th scope="col">Telefone do Responsável</th>
 					<th scope="col"></th>
+					<th scope="col"></th>
 				</tr>
 				<tr th:each="even : ${lista}">
 					<td scope="row" th:text="${even.nome}"></td>
@@ -59,8 +60,9 @@
 					<td th:text="${even.telResp}"></td>
 					<td class="text-center"><a class='btn btn-info btn-xs'
 						th:href="@{/editarEvento(codigo=${even.codigo})}"><span
-							class="glyphicon glyphicon-edit"></span>Editar</a>
-							<br>  <a
+							class="glyphicon glyphicon-edit"></span>Editar</a></td>
+							  
+							<td class="text-center">  <a
 						class='btn btn-info btn-xs'
 						th:href="@{/removerEvento(codigo=${even.codigo})}"><span
 							class="glyphicon glyphicon-edit"></span> Remover</a></td>
@@ -69,6 +71,7 @@
 	</div>
 	<div align="center">
 				<a class='btn btn-info btn-xs' th:href="@{/cadastrarEventos}">Cadastrar Eventos</a>
+				
 				<a class='btn btn-info btn-xs' th:href="@{/ind}">Página Inicial</a>
 	</div>
 	

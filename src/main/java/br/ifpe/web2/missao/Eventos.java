@@ -8,26 +8,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Eventos {
 	
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigo;
 	@NotBlank(message = "O nome deve ser preenchido")
 	private String nome;
 	private String descricaoEvento;
-	@FutureOrPresent(message ="Informe uma data válida" )
-	@NotNull
+	@FutureOrPresent
+	@NotNull(message ="Informe uma data válida" )
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date data;
 	@Min(value = 10, message = "A quantidade deve ser maior que 10 convidados")

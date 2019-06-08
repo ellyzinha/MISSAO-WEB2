@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -40,6 +41,19 @@ public class LocalController {
 		ModelAndView mv = new ModelAndView("/LocalEventos");
 		mv.addObject("lista", localRep.findAll());
 		return mv;
+	}
+	
+	@GetMapping("/editarLocal")
+	public ModelAndView editar(@RequestParam Integer codigo) {
+		ModelAndView mv = new ModelAndView("/cadastroLocal");
+		mv.addObject("localEventos" , localRep.getOne(codigo));
+		return mv;
+	}
+	
+	@GetMapping("/removerLocal")
+	public ModelAndView remover(@RequestParam Integer codigo) {
+		localRep.deleteById(codigo);
+		return listar();
 	}
 	
 	

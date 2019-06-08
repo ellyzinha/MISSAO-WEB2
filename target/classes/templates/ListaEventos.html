@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Eventos</title>
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link
+	href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap"
+	rel="stylesheet">
+<style type="text/css">
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
+</style>
+</head>
+<body>
+	<div class="container">
+		<!-- Form para pesquisa produto  -->
+		<form th:action="@{/eventos}" method="post">
+			<h3 class="modal-header modal-header-warning">
+			
+				<i class="glyphicon glyphicon-th-list"></i> Lista de Eventos <span
+					class="pull-right">  <input type="text" name="nomePesquisa"
+					id="nomePesquisa" placeholder="Digite um nome"
+					class="btn btn-default btn-sm" />
+					<button type="submit" class="btn btn-default btn-sm">
+						<span class="glyphicon glyphicon-search"></span> Pesquisar
+					</button>
+				</span>
+			</h3>
+		</form>
+		<div class="row col-md-6 col-md-offset-2 custyle">
+			<table class="table table-striped custab">
+				<tr>
+					<th scope="col">Nome do Evento</th>
+					<th scope="col">Data do Evento</th>
+					<th scope="col">Nome do Responsável</th>
+					<th scope="col">Telefone do Responsável</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+				<tr th:each="even : ${lista}">
+					<td scope="row" th:text="${even.nome}"></td>
+					<td th:text="${even.data}"></td>
+					<td th:text="${even.nomeResp}"></td>
+					<td th:text="${even.telResp}"></td>
+					<td class="text-center"><a class='btn btn-info btn-xs'
+						th:href="@{/editarEvento(codigo=${even.codigo})}"><span
+							class="glyphicon glyphicon-edit"></span>Editar</a></td>
+							  
+							<td class="text-center">  <a
+						class='btn btn-info btn-xs'
+						th:href="@{/removerEvento(codigo=${even.codigo})}"><span
+							class="glyphicon glyphicon-edit"></span> Remover</a></td>
+			</table>
+		</div>
+	</div>
+	<div align="center">
+				<a class='btn btn-info btn-xs' th:href="@{/cadastrarEventos}">Cadastrar Eventos</a>
+				
+				<a class='btn btn-info btn-xs' th:href="@{/ind}">Página Inicial</a>
+	</div>
+	
+</body>
+</html>

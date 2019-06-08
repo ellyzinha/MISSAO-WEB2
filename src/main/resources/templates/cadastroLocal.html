@@ -4,48 +4,83 @@
 <head>
 <meta charset="UTF-8">
 <title>Cadastro de Locais</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="cadastro.css" />
+    <script>
+                $(document).ready(function(){
+
+            $('.input').focus(function(){
+            $(this).parent().find(".label-txt").addClass('label-active');
+            });
+
+            $(".input").focusout(function(){
+            if ($(this).val() == '') {
+                $(this).parent().find(".label-txt").removeClass('label-active');
+            };
+            });
+
+            });
+    </script>
 </head>
 <body>
-<h2 align="center">Cadastro do Local de Evento</h2>
-<div align="center">
+
 <form th:action="@{/addLocal}" th:object="${localEventos}" method="post">
 		<input type="hidden" th:field="*{codigo}"/>
-		<div>
-		<label>Nome do Local:</label><br>
-		<input type="text" th:field="*{nome}">
+		<label>
+		<p class="label-txt">Nome do Local:</p>
+		<input class="input" type="text" th:field="*{nome}">
+		<div class="line-box">
+		<div class="line">
 		</div>
-		<div>
-		<label>Endereço:</label><br>
-		<input type="text" th:field="*{endereco}">
 		</div>
-		<div>
-		<label>Link do Google Maps:</label><br>
-		<input type="url" th:field="*{linkMapa}">
+		</label>
+		<label>
+		<p class="label-txt">Endereço:</p>
+		<input class="input" type="text" th:field="*{endereco}">
+		<div class="line-box">
+		<div class="line">
 		</div>
-		<div>
-		<label>Capacidade:</label><br>
-		<input type="number" th:field="*{capacidade}">
 		</div>
-		<br>
-		<label>Ambiente Fechado ou Aberto:</label><br>
-		<select th:field="*{ambiente}">
-			<option value="ambiente">Selecione</option>
+		</label>
+		<label>
+		<p class="label-txt">Link do Google Maps:</p>
+		<input class="input" type="url" th:field="*{linkMapa}">
+		<div class="line-box">
+		<div class="line">
+		</div>
+		</div>
+		</label>
+		<label>
+		<p class="label-txt"> Capacidade:</p>
+		<input class="input" type="number" th:field="*{capacidade}">
+		<div class="line-box">
+		<div class="line">
+		</div>
+		</div>
+		</label>
+		<label>
+		<select class="form-control" th:field="*{ambiente}">
+			<option value="ambiente">Selecione um ambiente</option>
 			<option value="ambiente">Aberto</option>
 			<option value="ambiente">Fechado</option>
 		</select>
-		<div>
-		<br>
-		<button type="submit">Enviar</button>
-		</div>
+		</label>
+
+		<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Salvar</button>
 		
-		<div th:if="${#fields.hasAnyErrors()}">
+	<div class="alert alert-danger">	
+	<div th:if="${#fields.hasAnyErrors()}">
 	<p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
-</div>
-	
-	</form>
-	<br>
-	<a th:href="@{/listarLocal}">Voltar</a>
 	</div>
+	</div>
+	
+	<a th:href="@{/listarLocal}">Voltar</a>
+	</form>
+
+	
+	
 
 </body>
 </html>

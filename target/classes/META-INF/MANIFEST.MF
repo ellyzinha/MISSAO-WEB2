@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Missao-01
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Bruna
+Implementation-Vendor-Id: br.ifpe.web2
+Build-Jdk: 1.8.0_191
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Missao-01
+Created-By: Maven Integration for Eclipse
+
